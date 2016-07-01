@@ -3,14 +3,24 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Twitter - warsztaty 2</title>
     </head>
     <body>
         <?php
-        // put your code here
+        
+        require_once 'src/functions.php';
+         
+        $conn = connectToDatabase();
+        redirectIfNotLoggedIn();
+        
+        
+        
         ?>
     </body>
 </html>
+
+
+
 
 password_hash($_POST['password'], PASSWORD_DEFAULT);
 
