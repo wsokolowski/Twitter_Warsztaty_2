@@ -17,12 +17,12 @@ class User
         $this->isActive = false;
     }
     
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
     
-    public function getEmail() 
+    public function getEmail()
     {
         return $this->email;
     }
@@ -74,8 +74,24 @@ class User
 
     public static function getAllUsers(mysqli $conn) //mysqli to nazwa klasy, dzieki temu nie bedziemy mogli tam wstawic obiektu innej klasy
     {
-        $query = 'SELECT * FROM user';
+        $query = "SELECT * FROM `user`";
         
-        $result = $conn->query($query);
+        return $result = $conn->query($query);
     }
+    
+    public function loadAllTweets($userId)
+    {
+        
+    }
+    
+    public function registerUser(mysqli $conn)
+    {
+        $query = "INSERT INTO `user`(`email`, `hashed_password`) VALUES('$this->email', '$this->hashedPassword')";
+        
+        return $result = $conn->query($query);
+    }
+    
+    
+    
+    
 }
