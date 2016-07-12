@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 require_once 'src/functions.php';
 require_once 'src/User.php';
-require_once 'src/Tweet.php';
+require_once 'src/Twitt.php';
 
 $conn = connectToDatabase();
 
@@ -18,8 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                 $allUsers = User::getAllUsers($conn);
                 
                 foreach ($allUsers as $users) {
+                    
                     if ($users['email'] === $user->getEmail() && password_verify($_POST['password'], $users['hashed_password'])) {
+                        
                         header('Location: index.php');
+                        
+                        if(!isset($_SESSION['user_id'])) {
+                            $_SESSION['user_id'] = $users['id'];
+                        }
+                        break;
+                        
                     }else {
                         header('Location: login.php?ver=0');
                     }
@@ -41,7 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         $user->activate;
                 
                         $user->registerUser($conn);
-                        header('Location: index.php');  
+                        
+                        session_start();
+                        if(!isset($_SESSION['user_id'])) {
+                            $_SESSION['user_id'] = $users['id'];
+                        }
+                        
+                        header('Location: index.php');
                     }
                 }
                 

@@ -9,7 +9,7 @@ CREATE TABLE user (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE tweet (
+CREATE TABLE twitt (
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     tweet_text TEXT,

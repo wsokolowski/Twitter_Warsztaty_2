@@ -12,6 +12,9 @@
          
         $conn = connectToDatabase();
         
+        session_start();
+        unset($_SESSION['user_id']);
+        
         if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['ver'])){
             if ($_GET['ver']  === "0") {
                 echo "Incorrect email or password";

@@ -79,7 +79,7 @@ class User
         return $result = $conn->query($query);
     }
     
-    public function loadAllTweets($userId)
+    public function loadAllTwitts($userId)
     {
         
     }
